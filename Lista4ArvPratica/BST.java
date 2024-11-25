@@ -4,7 +4,33 @@ public class BST {
     public BST() {
         this.raiz = null;
     }
+        //Exercicio 1
+    public int contarNos() {
+        return quantidadeNos(raiz);
+    }
 
+    private int quantidadeNos(No no) {
+        if (no == null) {
+            return 0;
+        }
+        return 1 + quantidadeNos(no.esq) + quantidadeNos(no.dir);
+    }
+            //Exercicio 2
+    public int contarFolhas() {
+        return quantidadeFolhas(raiz);
+    }
+
+    private int quantidadeFolhas(No no) {
+        if (no == null) {
+            return 0;
+        } else if (no.esq == null && no.dir == null) {
+            return 1;
+        } else {
+            return quantidadeFolhas(no.esq) + quantidadeFolhas(no.dir);
+        }
+    }
+
+            //Exercicio 3
     // Método para adicionar um valor na árvore (sem recursão)
     public void adicionar(int novoValor) {
         No novoNo = new No(novoValor);
@@ -37,32 +63,7 @@ public class BST {
             anterior.dir = novoNo;
         }
     }
-
-    public int contarNos() {
-        return quantidadeNos(raiz);
-    }
-
-    private int quantidadeNos(No no) {
-        if (no == null) {
-            return 0;
-        }
-        return 1 + quantidadeNos(no.esq) + quantidadeNos(no.dir);
-    }
-
-    public int contarFolhas() {
-        return quantidadeFolhas(raiz);
-    }
-
-    private int quantidadeFolhas(No no) {
-        if (no == null) {
-            return 0;
-        } else if (no.esq == null && no.dir == null) {
-            return 1;
-        } else {
-            return quantidadeFolhas(no.esq) + quantidadeFolhas(no.dir);
-        }
-    }
-    
+       //Exercicio 4
 
     public void obterEspelho() {
         obterEspelho(raiz);
@@ -79,7 +80,7 @@ public class BST {
         obterEspelho(no.esq);
         obterEspelho(no.dir);
     }
-
+      //Exercicio 5
     public boolean saoSimilares(BST outraArvore) {
         return saoSimilares(this.raiz, outraArvore.raiz);
     }
@@ -93,7 +94,7 @@ public class BST {
         }
         return saoSimilares(no1.esq, no2.esq) && saoSimilares(no1.dir, no2.dir);
     }
-
+      //Exercicio 6 
     public boolean igualdade(BST outraArvore) {
         return saoIguais(this.raiz, outraArvore.raiz);
     }
@@ -109,6 +110,7 @@ public class BST {
         }
         return false;
     }
+           //Exercicio 7
 
     public boolean estritoBin() {
         return ehEstritamenteBinaria(raiz);
