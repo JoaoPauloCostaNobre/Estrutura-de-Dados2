@@ -29,41 +29,44 @@ public class BST {
             return quantidadeFolhas(no.esq) + quantidadeFolhas(no.dir);
         }
     }
-
-            //Exercicio 3
-    // Método para adicionar um valor na árvore (sem recursão)
+    
+       //Exercicio 3
+    
     public void adicionar(int novoValor) {
-        No novoNo = new No(novoValor);
-
-        if (raiz == null) { // Se a árvore estiver vazia, o novo nó é a raiz
-            raiz = novoNo;
-            return;
+            raiz = adicionarNo(raiz, novoValor);
         }
-
-        No atual = raiz;
-        No anterior = null;
-
-        // Navega na árvore até encontrar o local correto para o novo nó
-        while (atual != null) {
-            anterior = atual;
-            if (novoValor < atual.valor) {
-                atual = atual.esq; // Vai para a subárvore esquerda
-            } else if (novoValor > atual.valor) {
-                atual = atual.dir; // Vai para a subárvore direita
-            } else {
-                // Valor já existe na árvore (não permitimos duplicados)
-                return;
+       
+    private No adicionarNo(No raiz, int novoValor) {
+            No novoNo = new No(novoValor);
+    
+            if (raiz == null) {
+                return novoNo; 
             }
+    
+            No atual = raiz;
+            No anterior = null;
+    
+       while (atual != null) {
+                anterior = atual;
+            if (novoValor < atual.valor) {
+                    atual = atual.esq; 
+            } else if (novoValor > atual.valor) {
+                    atual = atual.dir; 
+            } else {
+                    return raiz;
+                }
+            }
+    
+            if (novoValor < anterior.valor) {
+                anterior.esq = novoNo;
+            } else {
+                anterior.dir = novoNo;
+            }
+    
+            return raiz;
         }
-
-        // Insere o novo nó no local apropriado
-        if (novoValor < anterior.valor) {
-            anterior.esq = novoNo;
-        } else {
-            anterior.dir = novoNo;
-        }
-    }
-       //Exercicio 4
+    
+         //Exercicio 4
 
     public void obterEspelho() {
         obterEspelho(raiz);
@@ -128,7 +131,7 @@ public class BST {
         }
         return false;
     }
-
+       //impressoes
     public void imprimirEmOrdem() {
         imprimirEmOrdem(this.raiz);
         System.out.println();

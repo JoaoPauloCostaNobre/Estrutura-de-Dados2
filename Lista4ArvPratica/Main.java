@@ -4,13 +4,14 @@ public class Main {
         BST arvore2 = new BST();
 
         // Inserindo valores na primeira árvore
-        arvore1.adicionar(50);
-        arvore1.adicionar(30);
-        arvore1.adicionar(70);
-        arvore1.adicionar(20);
-        arvore1.adicionar(40);
-        arvore1.adicionar(60);
-        arvore1.adicionar(80);
+     
+      arvore1.adicionar(30);
+      arvore1.adicionar(15);
+      arvore1.adicionar(45);
+      arvore1.adicionar(10);
+      arvore1.adicionar(20);
+      arvore1.adicionar(40);
+      arvore1.adicionar(60);
 
         // Inserindo valores na segunda árvore
         arvore2.adicionar(15);
@@ -51,7 +52,7 @@ public class Main {
 
         // Obtendo e imprimindo o espelho da Árvore 1
         arvore1.obterEspelho();
-        System.out.println("\nÁrvore 1 após obter o espelho:");
+        System.out.println("\nÁrvore 1 após obter o espelho em ordem:");
         arvore1.imprimirEmOrdem();
     }
 }
