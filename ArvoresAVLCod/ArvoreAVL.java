@@ -1,4 +1,8 @@
+import java.util.Stack;
+
 public class ArvoreAVL {
+   
+
     private No raiz;
 
     // Método para inserir um valor na árvore
@@ -16,14 +20,14 @@ public class ArvoreAVL {
         } else if (valor > no.valor) {
             no.dir = inserir(no.dir, valor);
         } else {
-            return no;  // Evita duplicatas
+            return no; // Evita duplicatas
         }
 
         atualizarAltura(no);
         return rebalancear(no);
     }
 
-    // Método para remover um valor na árvore
+    // Método para remover um valor da árvore
     public void remover(int valor) {
         raiz = remover(raiz, valor);
     }
@@ -109,17 +113,11 @@ public class ArvoreAVL {
     }
 
     private int altura(No no) {
-        if (no == null) {
-            return 0;
-        }
-        return no.altura;
+        return (no == null) ? 0 : no.altura;
     }
 
     private int getFatorBalanceamento(No no) {
-        if (no == null) {
-            return 0;
-        }
-        return altura(no.esq) - altura(no.dir);
+        return (no == null) ? 0 : altura(no.esq) - altura(no.dir);
     }
 
     private No getMin(No no) {
@@ -141,5 +139,43 @@ public class ArvoreAVL {
             System.out.print(no.valor + "(" + getFatorBalanceamento(no) + ") ");
             imprimirEmOrdem(no.dir);
         }
+    }
+
+    // Função para imprimir a árvore visualmente
+    public void printTree() {
+        Stack<No> globalStack = new Stack<>();
+        globalStack.push(raiz);
+        int gaps = 32;
+        boolean isRowEmpty = false;
+        String separator = "-----------------------------------------------------------------";
+        System.out.println(separator);
+        while (!isRowEmpty) {
+            Stack<No> localStack = new Stack<>();
+            isRowEmpty = true;
+
+            for (int j = 0; j < gaps; j++)
+                System.out.print(' ');
+            while (!globalStack.isEmpty()) {
+                No temp = globalStack.pop();
+                if (temp != null) {
+                    System.out.print(temp.valor);
+                    localStack.push(temp.esq);
+                    localStack.push(temp.dir);
+                    if (temp.esq != null || temp.dir != null)
+                        isRowEmpty = false;
+                } else {
+                    System.out.print("__");
+                    localStack.push(null);
+                    localStack.push(null);
+                }
+                for (int j = 0; j < gaps * 2 - 2; j++)
+                    System.out.print(' ');
+            }
+            System.out.println();
+            gaps /= 2;
+            while (!localStack.isEmpty())
+                globalStack.push(localStack.pop());
+        }
+        System.out.println(separator);
     }
 }
