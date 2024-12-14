@@ -19,8 +19,8 @@ public class Main {
         System.out.println("\nRemovendo elementos da árvore AVL:");
         for (int valor : remocoes) {
             System.out.println("\nRemovendo: " + valor);
-            avl.remover(valor); // Não implementada no código fornecido
-            avl.printTree();  // Exibe a árvore após cada remoção
+            avl.remover(valor); 
+            avl.printTree();  
         }
     }
 }
